@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Nav</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        div#nav {
+            background-color: #131921;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        div#nav button {
+            background-color: transparent;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        div#nav button:hover {
+            border: 1px solid #ffffff;
+            border-radius: 3px;
+        }
+        
+        .logo {
+            color: #FF9900;
+            font-weight: bold;
+            font-size: 24px;
+            margin-right: auto;
+        }
+        div#nav #login, div#nav #sign-in {
+            background-color: #FF9900;
+            color: #000000;
+            border-radius: 3px;
+        }
+
+        @media  screen and (max-width: 480px) {
+            div#nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            div#nav .logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div class="logo">Parikshit</div>
+        <button>Home</button>
+        <button>About</button>
+        <button>Deals</button>
+        <button>Service</button>
+        <button id="login">login</button>
+        <button id="sign-in">sign in</button>
+    </div>
+    <div>
+        <h1></h1>
+    </div>
+</body>
+</html>

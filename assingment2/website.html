@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KidLearn - Learning Playhouse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-purple: #9b59b6;
+            --secondary-purple: #8e44ad;
+            --bg-light: #fffcf0;
+            --text-dark: #2c3e50;
+            --text-gray: #7f8c8d;
+            --white: #ffffff;
+            
+            --color-math: #ec4899;
+            --color-english: #f97316;
+            --color-science: #06b6d4;
+            --color-art: #10b981;
+            --color-hindi: #8b5cf6;
+            --color-games: #f59e0b;
+            
+            --shadow: 0 8px 30px rgba(0,0,0,0.05);
+            --card-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding-bottom: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: var(--primary-purple);
+            padding: 15px 0;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-link {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-link.active {
+            background: white;
+            color: var(--primary-purple);
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, #d397fa 0%, #be6df0 100%);
+            border-radius: 30px;
+            padding: 40px;
+            margin-top: 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(190, 109, 240, 0.3);
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h2 {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .banner h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .banner p {
+            font-size: 1rem;
+            max-width: 500px;
+            line-height: 1.4;
+            opacity: 0.95;
+        }
+
+        .banner p span {
+            color: #fff176;
+            font-weight: 700;
+        }
+
+        .banner-img {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 5rem;
+            opacity: 0.2;
+        }
+
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid #f0f0f0;
+        }
+
+        .stat-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        /* Section Header */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0 20px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            color: #34495e;
+        }
+
+        .section-title i {
+            color: #8e44ad;
+        }
+
+        .keep-going {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Assignments Grid */
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .assignments-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .assignments-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .assignment-card {
+            background: white;
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s;
+        }
+
+        .assignment-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-top-border {
+            height: 8px;
+            width: 100%;
+        }
+
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .subject-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: #f8f9fa;
+        }
+
+        .subject-info h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .subject-name {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .due-date {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-btn {
+            width: 100%;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            color: white;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .card-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Achievement Banner */
+        .achievement-banner {
+            background: linear-gradient(135deg, #ffbb4d 0%, #ff9100 100%);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 50px 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 20px rgba(255, 145, 0, 0.2);
+        }
+
+        .stars {
+            color: #fff176;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .achievement-banner h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .achievement-banner p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #4dd0e1;
+            padding: 40px 0 20px;
+            color: white;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .footer-center {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-right {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.5rem;
+        }
+
+        /* Status Colors */
+        .status-new { background-color: #e0f2fe; color: #0284c7; }
+        .status-working { background-color: #ffedd5; color: #ea580c; }
+        .status-done { background-color: #dcfce7; color: #16a34a; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container nav-content">
+            <div class="logo">
+                <img src="https://img.icons8.com/color/48/learning.png" width="30" alt="logo">
+                KidLearn
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="#" class="nav-link active"><i class="fas fa-clipboard-list"></i> Assignments</a>
+                <a href="#" class="nav-link"><i class="fas fa-user"></i> Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Banner -->
+        <div class="banner">
+            <div class="banner-content">
+                <h2><i class="fas fa-sparkles"></i> Welcome back!</h2>
+                <h1>Hey Champ! Ready to Learn? 🌟</h1>
+                <p>You have <span>3 new assignments</span> waiting for you. Let's make today awesome!</p>
+            </div>
+            <div class="banner-img">
+                <i class="fas fa-book-open"></i>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <span class="stat-icon">📋</span>
+                <span class="stat-value">6</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">✅</span>
+                <span class="stat-value">1</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🚀</span>
+                <span class="stat-value">2</span>
+                <span class="stat-label">In Progress</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">⭐</span>
+                <span class="stat-value">150</span>
+                <span class="stat-label">Points</span>
+            </div>
+        </div>
+
+        <!-- Assignments Section -->
+        <div class="section-header">
+            <h2 class="section-title"><i class="fas fa-trophy"></i> My Assignments</h2>
+            <div class="keep-going">
+                <i class="fas fa-chart-line"></i> Keep going!
+            </div>
+        </div>
+
+        <div class="assignments-grid">
+            <!-- Math -->
+            <div class="assignment-card">
+                <div class="card-top-border" style="background-color: var(--color-math);"></div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="subject-icon">🔢</div>
+                        <div class="subject-info">
+                            <h3>Math Practice</h3>
+                            <div class="subject-name"><i class="fas fa-book"></i> Mathematics</div>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="status-badge status-new"><i class="fas fa-clock"></i> New! ✨</span>
+                        <span class="due-date"><i class="far fa-calendar"></i> Tomorrow</span>
+                    </div>
+                    <button class="card-btn" style="background-color: var(--color-math);">Start Now! 🚀</button>
+                </div>
+            </div>
+
+            <!-- English -->
+            <div class="assignment-card">
+                <div class="card-top-border" style="background-color: var(--color-english);"></div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="subject-icon">📝</div>
+                        <div class="subject-info">
+                            <h3>Story Writing</h3>
+                            <div class="subject-name"><i class="fas fa-book"></i> English</div>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="status-badge status-working"><i class="fas fa-rocket"></i> Working 🚀</span>
+                        <span class="due-date"><i class="far fa-calendar"></i> In 3 days</span>
+                    </div>
+                    <button class="card-btn" style="background-color: var(--color-english);">Start Now! 🚀</button>
+                </div>
+            </div>
+
+            <!-- Science -->
+            <div class="assignment-card">
+                <div class="card-top-border" style="background-color: var(--color-science);"></div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="subject-icon">🔬</div>
+                        <div class="subject-info">
+                            <h3>Science Project</h3>
+                            <div class="subject-name"><i class="fas fa-book"></i> Science</div>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="status-badge status-new"><i class="fas fa-clock"></i> New! ✨</span>
+                        <span class="due-date"><i class="far fa-calendar"></i> Next Week</span>
+                    </div>
+                    <button class="card-btn" style="background-color: var(--color-science);">Start Now! 🚀</button>
+                </div>
+            </div>
+
+            <!-- Art -->
+            <div class="assignment-card">
+                <div class="card-top-border" style="background-color: var(--color-art);"></div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="subject-icon">🎨</div>
+                        <div class="subject-info">
+                            <h3>Drawing Activity</h3>
+                            <div class="subject-name"><i class="fas fa-book"></i> Art</div>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="status-badge status-done"><i class="fas fa-check-circle"></i> Done! 🎉</span>
+                        <span class="due-date"><i class="far fa-calendar"></i> Completed</span>
+                    </div>
+                    <button class="card-btn" style="background-color: var(--color-art);">View Details 👀</button>
+                </div>
+            </div>
+
+            <!-- Hindi -->
+            <div class="assignment-card">
+                <div class="card-top-border" style="background-color: var(--color-hindi);"></div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="subject-icon">📚</div>
+                        <div class="subject-info">
+                            <h3>Hindi Poem</h3>
+                            <div class="subject-name"><i class="fas fa-book"></i> Hindi</div>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="status-badge status-working"><i class="fas fa-rocket"></i> Working 🚀</span>
+                        <span class="due-date"><i class="far fa-calendar"></i> In 2 days</span>
+                    </div>
+                    <button class="card-btn" style="background-color: var(--color-hindi);">Start Now! 🚀</button>
+                </div>
+            </div>
+
+            <!-- Math 2 -->
+            <div class="assignment-card">
+                <div class="card-top-border" style="background-color: var(--color-games);"></div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <div class="subject-icon">🎯</div>
+                        <div class="subject-info">
+                            <h3>Number Games</h3>
+                            <div class="subject-name"><i class="fas fa-book"></i> Mathematics</div>
+                        </div>
+                    </div>
+                    <div class="card-meta">
+                        <span class="status-badge status-new"><i class="fas fa-clock"></i> New! ✨</span>
+                        <span class="due-date"><i class="far fa-calendar"></i> Today</span>
+                    </div>
+                    <button class="card-btn" style="background-color: var(--color-games);">Start Now! 🚀</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievement -->
+        <div class="achievement-banner">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+            <h3>You're doing amazing! 🎉</h3>
+            <p>Complete 2 more assignments to unlock a special badge!</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <i class="fas fa-sparkles"></i> Keep Learning, Keep Growing! <i class="far fa-star"></i>
+                </div>
+                <div class="footer-center">
+                    <a href="#" class="footer-link"><i class="fas fa-home"></i> Home</a>
+                    <a href="#" class="footer-link"><i class="fas fa-info-circle"></i> Help</a>
+                    <a href="#" class="footer-link"><i class="fas fa-star"></i> Rewards</a>
+                </div>
+                <div class="footer-right">
+                    Made with <i class="fas fa-heart" style="color: #ff80ab;"></i> for Kids © 2024
+                </div>
+            </div>
+            <div class="social-icons">
+                <i class="fas fa-sun" style="color: #ffeb3b;"></i>
+                <i class="fas fa-palette" style="color: #ff80ab;"></i>
+                <i class="fas fa-book" style="color: #81c784;"></i>
+                <i class="fas fa-bullseye" style="color: #f06292;"></i>
+                <i class="fas fa-trophy" style="color: #ffd54f;"></i>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

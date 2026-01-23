@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parikshit Sharma | Hacker Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        hacker: {
+                            green: '#00ff41',
+                            dark: '#0a0a0a',
+                            gray: '#1a1a1a',
+                            cyan: '#00f3ff'
+                        }
+                    },
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    animation: {
+                        'glitch': 'glitch 1s linear infinite',
+                        'scanline': 'scanline 8s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        glitch: {
+                            '0%, 100%': { transform: 'translate(0)' },
+                            '20%': { transform: 'translate(-2px, 2px)' },
+                            '40%': { transform: 'translate(-2px, -2px)' },
+                            '60%': { transform: 'translate(2px, 2px)' },
+                            '80%': { transform: 'translate(2px, -2px)' },
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100%)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #00ff41;
+            overflow-x: hidden;
+        }
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 9999;
+            background: linear-gradient(0deg, rgba(0, 255, 65, 0) 0%, rgba(0, 255, 65, 0.05) 50%, rgba(0, 255, 65, 0) 100%);
+            opacity: 0.1;
+            position: fixed;
+            pointer-events: none;
+        }
+        .crt::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9998;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .terminal-text {
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+        }
+        .hacker-border {
+            border: 1px solid rgba(0, 255, 65, 0.3);
+            box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
+        }
+        .hacker-border:hover {
+            border-color: #00ff41;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #00ff41;
+        }
+    </style>
+</head>
+<body class="font-mono crt selection:bg-hacker-green selection:text-black">
+    <div class="scanline animate-scanline"></div>
+
+    <!-- Initialization Header -->
+    <header class="p-4 border-b border-hacker-green/30 bg-hacker-dark/80 backdrop-blur sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-hacker-green animate-pulse">></span>
+                <span class="terminal-text font-bold">System.initialize(Elon_DADA)</span>
+            </div>
+            <nav class="hidden md:flex space-x-6 text-sm">
+                <a href="#about" class="hover:text-white transition">_about</a>
+                <a href="#skills" class="hover:text-white transition">_skills</a>
+                <a href="#projects" class="hover:text-white transition">_projects</a>
+                <a href="#experience" class="hover:text-white transition">_experience</a>
+                <a href="#contact" class="hover:text-white transition">_contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center relative py-20 overflow-hidden">
+        <div class="absolute inset-0 flex flex-col justify-center items-center opacity-5 pointer-events-none select-none">
+            <div class="text-9xl font-bold whitespace-nowrap animate-glitch">PARIKSHIT PARIKSHIT PARIKSHIT</div>
+            <div class="text-9xl font-bold whitespace-nowrap animate-glitch" style="animation-delay: 0.2s">SHARMA SHARMA SHARMA</div>
+            <div class="text-9xl font-bold whitespace-nowrap animate-glitch" style="animation-delay: 0.4s">PARIKSHIT PARIKSHIT PARIKSHIT</div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="mb-6 inline-block py-1 px-3 border border-hacker-green tracking-widest animate-pulse">
+                Access Granted: Level 10 Developer
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold mb-8 terminal-text">
+                PARIKSHIT<br>SHARMA
+            </h1>
+            <div class="flex justify-center items-center space-x-4 text-xl md:text-2xl text-white">
+                <span class="text-hacker-green">$</span>
+                <span id="typing-text">Full Stack Developer & AI Enthusiast</span>
+            </div>
+            <div class="mt-12">
+                <a href="#projects" class="hacker-border px-8 py-3 bg-hacker-green text-black font-bold hover:bg-transparent hover:text-hacker-green transition duration-300 tracking-tighter">
+                    Explore_Database
+                </a>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
+            <span class="text-xs uppercase mb-2 tracking-widest">A_SCROLL</span>
+            <div class="w-px h-12 bg-hacker-green/50 animate-bounce"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 border-t border-hacker-green/10">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 flex items-center">
+                    <span class="text-hacker-green mr-4">01.</span>
+                    <span class="terminal-text">&lt;About Me/&gt;</span>
+                </h2>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="md:col-span-2 space-y-6 text-lg leading-relaxed text-gray-400">
+                        <p class="text-white italic border-l-4 border-hacker-green pl-6 py-2">
+                            "A person who wants to learn and upskill itself as well as contribute as much."
+                        </p>
+                        <p>
+                            I am a passionate developer with a strong focus on building scalable web applications and exploring the frontiers of Artificial Intelligence.
+                        </p>
+                        <p>
+                            My journey involves deep dives into <span class="text-hacker-green">React, Node.js, and Python</span>, constantly pushing the boundaries of what's possible in the browser and beyond.
+                        </p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="hacker-border p-4 bg-hacker-gray">
+                            <h3 class="text-sm font-bold mb-2 uppercase tracking-tighter text-hacker-green">// Frontend</h3>
+                            <p class="text-xs text-gray-500">React, Next.js, Tailwind</p>
+                        </div>
+                        <div class="hacker-border p-4 bg-hacker-gray">
+                            <h3 class="text-sm font-bold mb-2 uppercase tracking-tighter text-hacker-green">// Backend</h3>
+                            <p class="text-xs text-gray-500">Node, Python, FastAPI</p>
+                        </div>
+                        <div class="hacker-border p-4 bg-hacker-gray">
+                            <h3 class="text-sm font-bold mb-2 uppercase tracking-tighter text-hacker-green">// Deploy</h3>
+                            <p class="text-xs text-gray-500">Docker, AWS, Vercel</p>
+                        </div>
+                        <div class="hacker-border p-4 bg-hacker-gray">
+                            <h3 class="text-sm font-bold mb-2 uppercase tracking-tighter text-hacker-green">// Learning</h3>
+                            <p class="text-xs text-gray-500">Always adapting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-hacker-gray/30">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 flex items-center">
+                    <span class="text-hacker-green mr-4">03.</span>
+                    <span class="terminal-text">Skills_&_Abilities</span>
+                </h2>
+                <p class="mb-12 text-gray-400">My technical arsenal. Continuously expanding my knowledge base.</p>
+                
+                <div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+                    <!-- Frontend Skills -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-hacker-cyan uppercase tracking-tighter">Frontend</h3>
+                        <div class="space-y-4">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>React</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>Next.js</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>TypeScript</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>Tailwind CSS</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend & Tools -->
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-hacker-cyan uppercase tracking-tighter">Backend & Tools</h3>
+                        <div class="space-y-4">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>Node.js</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>Python</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>Git</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-1 text-sm">
+                                    <span>Docker</span>
+                                    <span>70%</span>
+                                </div>
+                                <div class="w-full bg-hacker-dark h-2 border border-hacker-green/30">
+                                    <div class="bg-hacker-green h-full shadow-[0_0_10px_#00ff41]" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 flex items-center">
+                    <span class="text-hacker-green mr-4">04.</span>
+                    <span class="terminal-text">Featured_Projects</span>
+                </h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="hacker-border group bg-hacker-dark relative overflow-hidden">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Cyber Security" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-60 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-hacker-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-white group-hover:text-hacker-green transition">Fake Banking APKs Detector</h3>
+                                <div class="flex space-x-3 text-hacker-green">
+                                    <a href="https://github.com/ElonCoding/Fake-Banking-APKs-Detector"><i class="fa-brands fa-github"></i></a>
+                                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">Fake Banking APKs Detector is an open-source tool that detects fraudulent or spoofed mobile banking applications. It uses AI/ML techniques </p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">PYTHON</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">AI/ML</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">Javascript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="hacker-border group bg-hacker-dark relative overflow-hidden">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=600" alt="AI " class="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-60 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-hacker-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-white group-hover:text-hacker-green transition">FACECOM</h3>
+                                <div class="flex space-x-3 text-hacker-green">
+                                    <a href="https://github.com/ElonCoding/FACECOM"><i class="fa-brands fa-github"></i></a>
+                                    <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">Python code with multiple dataset to detect the gender of a person by it's face only</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">PYTHON</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">OpenCV</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">AI/ML</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="hacker-border group bg-hacker-dark relative overflow-hidden">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=600" alt="Tech-Med-Aids" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-60 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-hacker-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-white group-hover:text-hacker-green transition">Tech Med Aids </h3>
+                                <div class="flex space-x-3 text-hacker-green">
+                                    <a href="https://github.com/ElonCoding/Tech-Med-Aids-prototype"><i class="fa-brands fa-github"></i></a>
+                                    <a href="https://tech-med-aids-prototype-6h5w.vercel.app/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">Tech-Med-Aids Prototype is a web-based healthcare platform demo that connects patients and admins.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">CSS</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">HTML</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">Javascript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hacker-border group bg-hacker-dark relative overflow-hidden">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=600" alt="Tech-Med-Aids" class="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-60 group-hover:opacity-100">
+                            <div class="absolute inset-0 bg-gradient-to-t from-hacker-dark to-transparent"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-xl font-bold text-white group-hover:text-hacker-green transition">DATA</h3>
+                                <div class="flex space-x-3 text-hacker-green">
+                                    <a href="https://github.com/ElonCoding/Data-Encryption-and-Decryption-Tool-Project"><i class="fa-brands fa-github"></i></a>
+                                    <a href="https://data-encryption-and-decryption-tool.vercel.app/"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                                </div>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-6">A comprehensive encryption toolkit featuring both a Python backend application and a modern responsive web interface for encrypting and decrypting messages and files using industry-standard AES and RSA algorithms.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">CSS</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">HTML</span>
+                                <span class="text-[10px] px-2 py-1 bg-hacker-gray border border-hacker-green/20 text-hacker-green">Javascript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

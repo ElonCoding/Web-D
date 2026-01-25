@@ -3,9 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CSS Car</title>
+    <style>
+        /* Car container */
+        .car {
+            position: relative;
+            width: 300px;
+            height: 120px;
+            margin: 100px auto;
+            animation: drive 8s linear infinite;
+        }
+
+        /* Car body */
+        .car-body {
+            position: absolute;
+            bottom: 30px;
+            left: 50px;
+            width: 200px;
+            height: 60px;
+            background: #e74c3c;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        /* Car roof */
+        .car-roof {
+            position: absolute;
+            bottom: 70px;
+            left: 80px;
+            width: 120px;
+            height: 50px;
+            background: #c0392b;
+            border-radius: 20px 20px 5px 5px;
+        }
+
+        /* Windows */
+        .window {
+            position: absolute;
+            background: #3498db;
+            border: 2px solid #2c3e50;
+        }
+
+        .window.front {
+            bottom: 75px;
+            left: 140px;
+            width: 50px;
+            height: 35px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .window.rear {
+            bottom: 75px;
+            left: 90px;
+            width: 45px;
+            height: 35px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Wheels */
+        .wheel {
+            position: absolute;
+            bottom: 0;
+            width: 40px;
+            height: 40px;
+            background: #2c3e50;
+            border-radius: 50%;
+            border: 3px solid #34495e;
+            animation: rotate 0.5s linear infinite;
+        }
+
+        .wheel.front {
+            left: 180px;
+        }
+
+        .wheel.rear {
+            left: 60px;
+        }
+
+        /* Wheel spokes */
+        .wheel::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: #7f8c8d;
+            border-radius: 50%;
+        }
+
+        /* Headlights */
+        .headlight {
+            position: absolute;
+            bottom: 45px;
+            right: 45px;
+            width: 15px;
+            height: 15px;
+            background: #f1c40f;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #f1c40f;
+        }
+
+        /* Animation for car movement */
+        @keyframes drive {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(calc(100vw + 100%));
+            }
+        }
+
+        /* Animation for wheel rotation */
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Road */
+        body {
+            background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #2ecc71 60%, #2ecc71 70%, #7f8c8d 70%, #7f8c8d 100%);
+            overflow: hidden;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Road markings */
+        .road {
+            position: absolute;
+            bottom: 20%;
+            width: 100%;
+            height: 10%;
+            background: #7f8c8d;
+        }
+
+        .road::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: repeating-linear-gradient(
+                to right,
+                #fff 0px,
+                #fff 30px,
+                transparent 30px,
+                transparent 60px
+            );
+            animation: road-move 1s linear infinite;
+        }
+
+        @keyframes road-move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-60px);
+            }
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="road"></div>
+    <div class="car">
+        <div class="car-body"></div>
+        <div class="car-roof"></div>
+        <div class="window front"></div>
+        <div class="window rear"></div>
+        <div class="wheel front"></div>
+        <div class="wheel rear"></div>
+        <div class="headlight"></div>
+    </div>
 </body>
 </html>

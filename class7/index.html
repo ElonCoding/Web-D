@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +10,12 @@
     canvas {
         border: 1px solid black;
     }
+
     canvas {
         background-color: rgb(0, 0, 0);
     }
 </style>
+
 <body>
     <canvas id="myCanvas" width="1000" height="400"></canvas>
     <script>
@@ -22,7 +25,7 @@
         // ctx.fillRect(0, 0, 75, 75); 
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         let cell = 50;
-        let cellQ = [[0,0]]
+        let cellQ = [[0, 0]]
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i of cellQ) {
@@ -41,49 +44,49 @@
             update();
             draw();
         }, 500);
-    document.addEventListener("keydown", (event) => {
-        if (event.key == "ArrowUp" && cellQ[cellQ.length - 1][1] > 0) {
-            cellQ.push([cellQ[cellQ.length - 1][0], cellQ[cellQ.length - 1][1] - cell]);
-        } else if (event.key == "ArrowDown" && cellQ[cellQ.length - 1][1] < canvas.height - cell) {
-            cellQ.push([cellQ[cellQ.length - 1][0], cellQ[cellQ.length - 1][1] + cell]);
-        } else if (event.key == "ArrowLeft" && cellQ[cellQ.length - 1][0] > 0) {
-            cellQ.push([cellQ[cellQ.length - 1][0] - cell, cellQ[cellQ.length - 1][1]]);
-        } else if (event.key == "ArrowRight" && cellQ[cellQ.length - 1][0] < canvas.width - cell) {
-            cellQ.push([cellQ[cellQ.length - 1][0] + cell, cellQ[cellQ.length - 1][1]]);
+        document.addEventListener("keydown", (event) => {
+            if (event.key == "ArrowUp" && cellQ[cellQ.length - 1][1] > 0) {
+                cellQ.push([cellQ[cellQ.length - 1][0], cellQ[cellQ.length - 1][1] - cell]);
+            } else if (event.key == "ArrowDown" && cellQ[cellQ.length - 1][1] < canvas.height - cell) {
+                cellQ.push([cellQ[cellQ.length - 1][0], cellQ[cellQ.length - 1][1] + cell]);
+            } else if (event.key == "ArrowLeft" && cellQ[cellQ.length - 1][0] > 0) {
+                cellQ.push([cellQ[cellQ.length - 1][0] - cell, cellQ[cellQ.length - 1][1]]);
+            } else if (event.key == "ArrowRight" && cellQ[cellQ.length - 1][0] < canvas.width - cell) {
+                cellQ.push([cellQ[cellQ.length - 1][0] + cell, cellQ[cellQ.length - 1][1]]);
+            }
+            cellQ.shift();
+        });
+        let score = 0;
+        let food = [Math.floor(Math.random() * (canvas.width / cell)) * cell, Math.floor(Math.random() * (canvas.height / cell)) * cell];
+        function drawFood() {
+            ctx.fillStyle = "red";
+            ctx.fillRect(food[0], food[1], cell, cell);
         }
-        cellQ.shift(); 
-    });
-    let score = 0;
-    let food = [Math.floor(Math.random() * (canvas.width / cell)) * cell, Math.floor(Math.random() * (canvas.height / cell)) * cell];
-    function drawFood() {
-        ctx.fillStyle = "red";
-        ctx.fillRect(food[0], food[1], cell, cell);
-    }
-    function checkFoodCollision() {
-        if (cellQ[cellQ.length - 1][0] === food[0] && cellQ[cellQ.length - 1][1] === food[1]) {
-            score++;
-            food = [Math.floor(Math.random() * (canvas.width / cell)) * cell, Math.floor(Math.random() * (canvas.height / cell)) * cell];
-            return true;
-        }
-        return false;
-    }
-    setInterval(() => {
-        if (checkFoodCollision()) {
-            cellQ.unshift([cellQ[0]]);
-        }
-        draw();
-        drawFood();
-    }, 500);
-    let gameOver = false;
-    function checkSelfCollision() {
-        for (let i = 0; i < cellQ.length - 1; i++) {
-            if (cellQ[cellQ.length - 1][0] === cellQ[i][0] && cellQ[cellQ.length - 1][1] === cellQ[i][1]) {
-                gameOver = true;
+        function checkFoodCollision() {
+            if (cellQ[cellQ.length - 1][0] === food[0] && cellQ[cellQ.length - 1][1] === food[1]) {
+                score++;
+                food = [Math.floor(Math.random() * (canvas.width / cell)) * cell, Math.floor(Math.random() * (canvas.height / cell)) * cell];
                 return true;
             }
+            return false;
         }
-        return false;
-    }
+        setInterval(() => {
+            if (checkFoodCollision()) {
+                cellQ.unshift([cellQ[0]]);
+            }
+            draw();
+            drawFood();
+        }, 500);
+        let gameOver = false;
+        function checkSelfCollision() {
+            for (let i = 0; i < cellQ.length - 1; i++) {
+                if (cellQ[cellQ.length - 1][0] === cellQ[i][0] && cellQ[cellQ.length - 1][1] === cellQ[i][1]) {
+                    gameOver = true;
+                    return true;
+                }
+            }
+            return false;
+        }
 
     </script>
 </body>
